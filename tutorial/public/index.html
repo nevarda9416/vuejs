@@ -14,36 +14,21 @@
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
-    <div id="component_test" class="text-center">
-      <testcomponent></testcomponent>      
+    <div id="databinding" class="text-center">
+      <component v-bind:is="display"></component>      
     </div>
-    <div id="component_test1" class="text-center">
-      <testcomponent></testcomponent>      
-    </div>
-    <script>
-      // inject template into testcomponent tag through Vue.component
-      Vue.component('testcomponent', {template: '<div v-on:mouseover="changename()" v-on:mouseout="originalname()"><h1>Custom component created by <span id="name">{{name}}</span></h1></div>'
-      ,
-      data: function() {
-        return {
-          name: 'Ria'
-        }        
-      },
-      methods: {
-        changename: function() {
-          this.name = "Ben"
-        },
-        originalname: function() {
-          this.name = "Ria"
-        }
-      }
-      })
+    <script type="text/javascript">
       var vm = new Vue({
-        el: '#component_test'
+        el: '#databinding',
+        data: {
+          display: 'component1'
+        },
+        components: {
+          'component1': {
+            template: '<div><span style="font-size:25px;color:red">Dynamic Component</span></div>'
+          }
+        }
       })
-      var vm1 = new Vue({
-        el: '#component_test1'
-      }) 
     </script>
   </body>
 </html>
