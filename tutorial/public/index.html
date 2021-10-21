@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title>To do</title>
+    <title>VueJS Template</title>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   </head>
   <body>
@@ -14,36 +14,36 @@
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
-    <script type="text/javascript">
-      var vm = new Vue({
-        data: {a:2},
-        computed: {
-          // get only, just need a function
-          aSum: function () {
-            return this.a + 2;
-          },
-          // both get and set
-          aSquare: {
-            get: function () {
-              return this.a * this.a;
-            },
-            set: function (v) {
-              this.a = v*2;
-            }
-          }
+    <div id="component_test" class="text-center">
+      <testcomponent></testcomponent>      
+    </div>
+    <div id="component_test1" class="text-center">
+      <testcomponent></testcomponent>      
+    </div>
+    <script>
+      // inject template into testcomponent tag through Vue.component
+      Vue.component('testcomponent', {template: '<div v-on:mouseover="changename()" v-on:mouseout="originalname()"><h1>Custom component created by <span id="name">{{name}}</span></h1></div>'
+      ,
+      data: function() {
+        return {
+          name: 'Ria'
+        }        
+      },
+      methods: {
+        changename: function() {
+          this.name = "Ben"
         },
-        methods: {
-          asquare: function () {
-            this.a *= this.a;
-          }
+        originalname: function() {
+          this.name = "Ria"
         }
+      }
       })
-      console.log(vm.aSquare); // -> 4
-      vm.asquare();
-      console.log(vm.a); // -> 4
-      vm.aSquare = 3;
-      console.log(vm.a); // -> 6
-      console.log(vm.aSum); // -> 8
+      var vm = new Vue({
+        el: '#component_test'
+      })
+      var vm1 = new Vue({
+        el: '#component_test1'
+      }) 
     </script>
   </body>
 </html>
