@@ -15,23 +15,35 @@
     <div id="app"></div>
     <!-- built files will be auto injected -->
     <script type="text/javascript">
-      var _obj = {fname: 'Raj', lname: 'Singh'}
-      // direct instance creation
       var vm = new Vue({
-        data: _obj
-      });
-      console.log(vm.fname);
-      console.log(vm.$data);
-      console.log(vm.$data.fname);
-      // must use function when in Vue.extend()
-      var Component = Vue.extend({
-        data: function () {
-          return _obj
+        data: {a:2},
+        computed: {
+          // get only, just need a function
+          aSum: function () {
+            return this.a + 2;
+          },
+          // both get and set
+          aSquare: {
+            get: function () {
+              return this.a * this.a;
+            },
+            set: function (v) {
+              this.a = v*2;
+            }
+          }
+        },
+        methods: {
+          asquare: function () {
+            this.a *= this.a;
+          }
         }
-      });
-      var myComponentInstance = new Component();
-      console.log(myComponentInstance.lname);
-      console.log(myComponentInstance.$data.lname);
+      })
+      console.log(vm.aSquare); // -> 4
+      vm.asquare();
+      console.log(vm.a); // -> 4
+      vm.aSquare = 3;
+      console.log(vm.a); // -> 6
+      console.log(vm.aSum); // -> 8
     </script>
   </body>
 </html>
