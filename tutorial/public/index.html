@@ -14,18 +14,23 @@
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
-    <div id="databinding" class="text-center">
-      <component v-bind:is="display"></component>      
+    <div id="computed_props" class="text-center">
+      FirstName: <input type="text" v-model="firstname"/><br/><br/>
+      LastName: <input type="text" v-model="lastname"/><br/><br/>
+      <h1>My name is {{firstname}} {{lastname}}</h1>
+      <h2>Using computed method: {{getfullname}}</h2>
     </div>
-    <script type="text/javascript">
+    <script>
       var vm = new Vue({
-        el: '#databinding',
+        el: '#computed_props',
         data: {
-          display: 'component1'
+          firstname: "DAO TIEN",
+          lastname: "TU",
+          birthyear: "2022"
         },
-        components: {
-          'component1': {
-            template: '<div><span style="font-size:25px;color:red">Dynamic Component</span></div>'
+        computed: {
+          getfullname: function() {
+            return this.firstname + " " + this.lastname
           }
         }
       })
