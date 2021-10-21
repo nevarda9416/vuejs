@@ -15,22 +15,26 @@
     <div id="app"></div>
     <!-- built files will be auto injected -->
     <div id="computed_props" class="text-center">
-      FirstName: <input type="text" v-model="firstname"/><br/><br/>
-      LastName: <input type="text" v-model="lastname"/><br/><br/>
+      FirstName: <input type="text" v-model="fullname"/>
       <h1>My name is {{firstname}} {{lastname}}</h1>
-      <h2>Using computed method: {{getfullname}}</h2>
     </div>
     <script>
       var vm = new Vue({
         el: '#computed_props',
         data: {
           firstname: "DAO TIEN",
-          lastname: "TU",
-          birthyear: "2022"
+          lastname: "TU"
         },
         computed: {
-          getfullname: function() {
-            return this.firstname + " " + this.lastname
+          fullname: {
+            get: function() {
+              return this.firstname + " " + this.lastname // n[0] + " " + n[1]
+            },
+            set: function(n) {
+              var n = n.split(" ");
+              this.firstname = n[0];
+              this.lastname = n[1];
+            }
           }
         }
       })
