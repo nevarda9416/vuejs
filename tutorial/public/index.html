@@ -32,25 +32,47 @@
         background-color: #FFBABA;
       }
     </style>
-    <div id="classbinding">
-      <new_component v-bind:class="{active:isActive,displayError:haserror}" v-bind:style="styleobj"></new_component>
+    <div id="classbinding" class="text-center">
+      <h3>Textbox</h3>
+      <input v-model="name" placeholder="Enter name"/>
+      <h3>Name entered is: {{name}}</h3>
+      <br/>
+      <input v-model.lazy="age" type="number" placeholder="Enter age"/>
+      <h3>Age entered is: {{age}}</h3>
+      <br/>
+      <h3>Textarea</h3>
+      <textarea v-model="textmessage" placeholder="Add details"></textarea>
+      <h1><p>{{textmessage}}</p></h1>
+      <br/>
+      <h3>Checkbox</h3>
+      <label><input type="checkbox" id="checkbox" v-model="checked"> {{checked}}</label>
+      <br/>
+      <h3>Radio</h3>
+      <label><input type="radio" id="black" value="Black" v-model="picked"> Black</label>
+      <label><input type="radio" id="white" value="White" v-model="picked"> White</label>
+      <h3>Radio element clicked: {{picked}}</h3>
+      <br/>
+      <h3>Select</h3>
+      <select v-model="languages">
+        <option disabled value="">Please select one</option>
+        <option>Java</option>
+        <option>Javascript</option>
+        <option>Php</option>
+        <option>C</option>
+        <option>C++</option>
+      </select>
+      <h3>Languages selected is: {{languages}}</h3>
     </div>
     <script>
       var vm = new Vue({
         el: '#classbinding',
         data: {
-          title: "Inline style binding",
-          isActive: true,
-          haserror: true,
-          styleobj: {
-            color: 'red',
-            fontSize: '30px'
-          }
-        },
-        components: {
-          'new_component': {
-            template: '<div class="info">Class binding for component</div>'
-          }
+          name: '',
+          age: 0,
+          textmessage: '',
+          checked: true,
+          picked: 'White',
+          languages: 'Java'
         }          
       });
     </script>
