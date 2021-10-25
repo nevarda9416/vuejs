@@ -33,15 +33,17 @@
       }
     </style>
     <div id="classbinding">
-      <new_component v-bind:class="{active:isActive,displayError:haserror}"></new_component>
+      <new_component v-bind:class="{active:isActive,displayError:haserror}" v-bind:style="{color:activeColor,fontSize:fontSize+'px'}"></new_component>
     </div>
     <script>
       var vm = new Vue({
         el: '#classbinding',
         data: {
-          title: "This is class binding example",
+          title: "Inline style binding",
           isActive: true,
-          haserror: true
+          haserror: true,
+          activeColor: 'red',
+          fontSize: 30
         },
         components: {
           'new_component': {
