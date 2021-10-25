@@ -33,7 +33,7 @@
       }
     </style>
     <div id="classbinding">
-      <div v-bind:class="[isActive?infoclass:'',haserror?errorclass:'']">{{title}}</div>
+      <new_component v-bind:class="{active:isActive,displayError:haserror}"></new_component>
     </div>
     <script>
       var vm = new Vue({
@@ -41,9 +41,12 @@
         data: {
           title: "This is class binding example",
           isActive: true,
-          infoclass: 'info',
-          haserror: true,
-          errorclass: 'displayError'
+          haserror: true
+        },
+        components: {
+          'new_component': {
+            template: '<div class="info">Class binding for component</div>'
+          }
         }          
       });
     </script>
