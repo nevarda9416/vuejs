@@ -33,15 +33,17 @@
       }
     </style>
     <div id="classbinding">
-      <div class="info" v-bind:class="{active:isActive,displayError:hasError}">{{title}}</div>
+      <div v-bind:class="[isActive?infoclass:'',haserror?errorclass:'']">{{title}}</div>
     </div>
     <script>
       var vm = new Vue({
         el: '#classbinding',
         data: {
           title: "This is class binding example",
-          isActive: false,
-          hasError: false
+          isActive: true,
+          infoclass: 'info',
+          haserror: true,
+          errorclass: 'displayError'
         }          
       });
     </script>
