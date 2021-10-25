@@ -33,7 +33,7 @@
       }
     </style>
     <div id="classbinding">
-      <new_component v-bind:class="{active:isActive,displayError:haserror}" v-bind:style="{color:activeColor,fontSize:fontSize+'px'}"></new_component>
+      <new_component v-bind:class="{active:isActive,displayError:haserror}" v-bind:style="styleobj"></new_component>
     </div>
     <script>
       var vm = new Vue({
@@ -42,8 +42,10 @@
           title: "Inline style binding",
           isActive: true,
           haserror: true,
-          activeColor: 'red',
-          fontSize: 30
+          styleobj: {
+            color: 'red',
+            fontSize: '30px'
+          }
         },
         components: {
           'new_component': {
