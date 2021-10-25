@@ -15,23 +15,34 @@
     <div id="app"></div>
     <!-- built files will be auto injected -->
     <style>
-    .active {
-      background: red;
-    }
+      .info {
+        color: #00529B;
+        background-color: #BDE5F8;
+      }
+      div {
+        margin: 10px 0;
+        padding: 12px;
+      }
+      .active {
+        color: #4F8A10;
+        background-color: #DFF2BF;
+      }
+      .displayError{
+        color: #D8000C;
+        background-color: #FFBABA;
+      }
     </style>
-    <div id="databinding" class="text-center">
-      {{title}}<br/>
-      <a v-bind:href="hreflink" target="_blank">Click me</a><br/>    
-      <div v-bind:class="{active:isActive}"><b>{{title}}</b></div>
+    <div id="classbinding">
+      <div class="info" v-bind:class="{active:isActive,displayError:hasError}">{{title}}</div>
     </div>
     <script>
       var vm = new Vue({
-        el: '#databinding',
+        el: '#classbinding',
         data: {
-          title: "DATA BINDING",
-          hreflink: "http://www.google.com",
-          isActive: true
-        }
+          title: "This is class binding example",
+          isActive: false,
+          hasError: false
+        }          
       });
     </script>
   </body>
