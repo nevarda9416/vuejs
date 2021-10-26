@@ -14,67 +14,33 @@
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
-    <style>
-      .info {
-        color: #00529B;
-        background-color: #BDE5F8;
-      }
-      div {
-        margin: 10px 0;
-        padding: 12px;
-      }
-      .active {
-        color: #4F8A10;
-        background-color: #DFF2BF;
-      }
-      .displayError{
-        color: #D8000C;
-        background-color: #FFBABA;
-      }
-    </style>
-    <div id="classbinding" class="text-center">
-      <h3>Textbox</h3>
-      <input v-model="name" placeholder="Enter name"/>
-      <h3>Name entered is: {{name}}</h3>
-      <br/>
-      <input v-model.lazy="age" type="number" placeholder="Enter age"/>
-      <h3>Age entered is: {{age}}</h3>
-      <br/>
-      <h3>Textarea</h3>
-      <textarea v-model="textmessage" placeholder="Add details"></textarea>
-      <h1><p>{{textmessage}}</p></h1>
-      <br/>
-      <h3>Checkbox</h3>
-      <label><input type="checkbox" id="checkbox" v-model="checked"> {{checked}}</label>
-      <br/>
-      <h3>Radio</h3>
-      <label><input type="radio" id="black" value="Black" v-model="picked"> Black</label>
-      <label><input type="radio" id="white" value="White" v-model="picked"> White</label>
-      <h3>Radio element clicked: {{picked}}</h3>
-      <br/>
-      <h3>Select</h3>
-      <select v-model="languages">
-        <option disabled value="">Please select one</option>
-        <option>Java</option>
-        <option>Javascript</option>
-        <option>Php</option>
-        <option>C</option>
-        <option>C++</option>
-      </select>
-      <h3>Languages selected is: {{languages}}</h3>
+    <div id="databinding" class="text-center">
+      <p style="font-size:25px">Language displayed: <b>{{languageclicked}}</b></p>
+      <button-counter v-for="(item, index) in languages" v-bind:item="item" v-bind:index="index" v-on:showlanguage="languagedisp"></button-counter>
     </div>
     <script>
+    Vue.component('button-counter', {
+            template: '<button v-on:click = "displayLanguage(item)"><span style = "font-size:25px;">{{ item }}</span></button>',          
+            props:['item'],
+            methods: {
+               displayLanguage: function (lng) {
+                  console.log(lng);
+                  this.$emit('showlanguage', lng);
+               }
+            },
+         });
       var vm = new Vue({
-        el: '#classbinding',
+        el: '#databinding',
         data: {
-          name: '',
-          age: 0,
-          textmessage: '',
-          checked: true,
-          picked: 'White',
-          languages: 'Java'
-        }          
-      });
+          languageclicked: "Javascript",
+          languages: ["Java", "PHP", "C++", "C", "Javascript", "C#", "Python", "HTML"]
+        },
+        methods: {
+          languagedisp: function(a) {
+            this.languageclicked = a;
+          }
+        }
+      })
     </script>
   </body>
 </html>
