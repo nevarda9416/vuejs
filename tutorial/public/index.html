@@ -15,29 +15,30 @@
     <div id="app"></div>
     <!-- built files will be auto injected -->
     <div id="databinding" class="text-center">
-      <p style="font-size:25px">Language displayed: <b>{{languageclicked}}</b></p>
-      <button-counter v-for="(item, index) in languages" v-bind:item="item" v-bind:index="index" v-on:showlanguage="languagedisp"></button-counter>
+      <button v-on:click="showdata" v-bind:style="styleobj">Click Me</button>
+      <span style="font-size:25px"><b>{{show}}</b></span>
+      <h1 v-if="show">This is h1 tag</h1>
+      <h2 v-else>This is h2 tag</h2>
+      <div v-show="!show">
+        <b>V-!Show:</b>
+        <img src="https://purepng.com/public/uploads/large/red-flower-madangfx-psa.png" width="100" height="100"/>
+      </div>
     </div>
     <script>
-    Vue.component('button-counter', {
-            template: '<button v-on:click = "displayLanguage(item)"><span style = "font-size:25px;">{{ item }}</span></button>',          
-            props:['item'],
-            methods: {
-               displayLanguage: function (lng) {
-                  console.log(lng);
-                  this.$emit('showlanguage', lng);
-               }
-            },
-         });
       var vm = new Vue({
         el: '#databinding',
         data: {
-          languageclicked: "Javascript",
-          languages: ["Java", "PHP", "C++", "C", "Javascript", "C#", "Python", "HTML"]
+          show: true,
+          styleobj: {
+            backgroundColor: '#2196F3!important',
+            cursor: 'pointer',
+            padding: '8px 16px',
+            verticalAlign: 'middle'
+          }
         },
         methods: {
-          languagedisp: function(a) {
-            this.languageclicked = a;
+          showdata: function(a) {
+            this.show = !this.show;
           }
         }
       })
