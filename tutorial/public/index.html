@@ -15,24 +15,22 @@
     <div id="app"></div>
     <!-- built files will be auto injected -->
     <style>
-      .fade-enter-active, .fade-leave-active {
-        transition: opacity 2s
+      .shiftx-enter-active {
+        animation: shift-in 2s;
       }
-      .fade-enter, .fade-leave-to {
-        opacity: 0
+      .shiftx-leave-active {
+        transition: shift-in 2s reverse;
       }
-      .shiftx-enter-active, .shiftx-leave-active {
-        transition: all 2s ease-in-out;
-      }
-      .shiftx-enter, .shiftx-leave-to {
-        transform: translateY(100px);
+      @keyframes shift-in {
+        0% {transform:rotateX(0deg);}
+        25% {transform:rotateX(90deg);}
+        50% {transform:rotateX(120deg);}
+        75% {transform:rotateX(180deg);}
+        100% {transform:rotateX(360deg);}
       }
     </style>
     <div id="databinding" class="text-center">
       <button v-on:click="show=!show">Click Me</button>
-      <transition name="fade">
-        <p v-show="show" v-bind:style="styleobj">Animation Example</p>
-      </transition>
       <transition name="shiftx">
         <p v-show="show">
           <img src = "https://purepng.com/public/uploads/large/red-flower-madangfx-psa.png" style = "width:100px;height:100px;" />
@@ -43,11 +41,7 @@
       var vm = new Vue({
         el: '#databinding',
         data: {
-          show: true,
-          styleobj: {
-            fontSize:'30px',
-            color:'red'
-          }
+          show: true
         },
         methods: {
           
