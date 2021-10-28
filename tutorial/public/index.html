@@ -12,35 +12,35 @@
     <noscript>
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
-    <div id = "app"></div>
+    <div id = "component_test">
+      <testcomponent :elementtype="'div,red,25,div1'">Hello Jai</testcomponent>
+      <testcomponent :elementtype="'h3,green,25,h3tag'">Hello Roy</testcomponent>
+      <testcomponent :elementtype="'p,blue,25,ptag'">Hello Ria</testcomponent>
+      <testcomponent :elementtype="'div,green,25,divtag'">Hello Ben</testcomponent>
+    </div>
     <script type = "text/javascript">   
-        var mixin = {
-          methods: {
-            helloworld: function() {
-              console.log('In HelloWorld');
+        Vue.component('testcomponent', {
+          render: function(createElement) {
+            var a = this.elementtype.split(",");
+            return createElement(a[0], {
+              attrs: {
+                id: a[3],
+                style: 'color:' + a[1] + ';font-size:' + a[2] + ';'
+              }              
             },
-            samemethod1: function() {
-              console.log('Mixin: Same Method');
+            this.$slots.default
+            )
+          },
+          props: {
+            elementtype: {
+              attributes: String,
+              required: true
             }
-          }
-        };   
-        var vm = new Vue({
-          el: '#app',
-          mixins: [mixin],
-          data: {},
-          methods: {
-            start: function() {
-              console.log('Start method');
-            },
-            samemethod: function() {
-              console.log('Main: Same method');
-            }
-          }
+          }            
         });
-        vm.helloworld();
-        vm.samemethod1();
-        vm.start();
-        vm.samemethod();
+        var vm = new Vue({
+          el: '#component_test'            
+        });
     </script>
   </body>
 </html>
