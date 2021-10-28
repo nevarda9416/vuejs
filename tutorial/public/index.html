@@ -15,22 +15,19 @@
     <div id="app"></div>
     <!-- built files will be auto injected -->
     <div id="databinding" class="text-center">
-      <div v-changestyle="{color:'green'}">VueJS Directive</div>
+      <input v-model="name" placeholder="Enter Name"/><br/>
+      <span style="font-size:25px"><b>Letter count is: {{name|countletters}}</b></span>
     </div>
-    <script>
-      Vue.directive("changestyle", {
-        bind(e1, binding, vnode) {
-          console.log(e1);
-          console.log(binding.value.color);
-          console.log(vnode);
-          e1.style.color=binding.value.color;
-          e1.style.fontSize="30px";
-        }
-      });
+    <script>    
       var vm = new Vue({
         el: '#databinding',
-        data: {},
-        methods: {}
+        data: {name:''},
+        methods: {},
+        filters: {
+          countletters: function(value) {
+            return value.length;
+          }
+        }
       });
     </script>
   </body>
