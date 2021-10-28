@@ -7,40 +7,37 @@
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title>VueJS Template</title>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/vue-router@3.0.1/dist/vue-router.js"></script>
+
   </head>
   <body>
     <noscript>
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
-    <div id = "component_test">
-      <testcomponent :elementtype="'div,red,25,div1'">Hello Jai</testcomponent>
-      <testcomponent :elementtype="'h3,green,25,h3tag'">Hello Roy</testcomponent>
-      <testcomponent :elementtype="'p,blue,25,ptag'">Hello Ria</testcomponent>
-      <testcomponent :elementtype="'div,green,25,divtag'">Hello Ben</testcomponent>
-    </div>
-    <script type = "text/javascript">   
-        Vue.component('testcomponent', {
-          render: function(createElement) {
-            var a = this.elementtype.split(",");
-            return createElement(a[0], {
-              attrs: {
-                id: a[3],
-                style: 'color:' + a[1] + ';font-size:' + a[2] + ';'
-              }              
-            },
-            this.$slots.default
-            )
-          },
-          props: {
-            elementtype: {
-              attributes: String,
-              required: true
-            }
-          }            
-        });
-        var vm = new Vue({
-          el: '#component_test'            
-        });
-    </script>
+    <div id = "app1">
+         <h1>Routing Example</h1>
+         <p>
+            <router-link to = "/route1">Router Link 1</router-link>
+            <router-link to = "/route2">Router Link 2</router-link>
+         </p>
+         <!-- route outlet -->
+         <!-- component matched by the route will render here -->
+         <router-view></router-view>
+      </div>
+      <script type = "text/javascript">
+         const Route1 = { template: '<div style = "border-radius:20px;background-color:cyan;width:200px;height:50px;margin:10px;font-size:25px;padding:10px;">This is router 1</div>' }
+         const Route2 = { template: '<div style = "border-radius:20px;background-color:green;width:200px;height:50px;margin:10px;font-size:25px;padding:10px;">This is router 2</div>' }
+         const routes = [
+            { path: '/route1', component: Route1 },
+            { path: '/route2', component: Route2 }
+         ];
+         const router = new VueRouter({
+            routes // short for `routes: routes`
+         });
+         var vm = new Vue({
+            el: '#app1',
+            router
+         });
+      </script>
   </body>
 </html>
