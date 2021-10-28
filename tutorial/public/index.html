@@ -14,39 +14,24 @@
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
-    <style>
-      .shiftx-enter-active {
-        animation: shift-in 2s;
-      }
-      .shiftx-leave-active {
-        transition: shift-in 2s reverse;
-      }
-      @keyframes shift-in {
-        0% {transform:rotateX(0deg);}
-        25% {transform:rotateX(90deg);}
-        50% {transform:rotateX(120deg);}
-        75% {transform:rotateX(180deg);}
-        100% {transform:rotateX(360deg);}
-      }
-    </style>
     <div id="databinding" class="text-center">
-      <button v-on:click="show=!show">Click Me</button>
-      <transition name="shiftx">
-        <p v-show="show">
-          <img src = "https://purepng.com/public/uploads/large/red-flower-madangfx-psa.png" style = "width:100px;height:100px;" />
-        </p>
-      </transition>
+      <div v-changestyle="{color:'green'}">VueJS Directive</div>
     </div>
     <script>
+      Vue.directive("changestyle", {
+        bind(e1, binding, vnode) {
+          console.log(e1);
+          console.log(binding.value.color);
+          console.log(vnode);
+          e1.style.color=binding.value.color;
+          e1.style.fontSize="30px";
+        }
+      });
       var vm = new Vue({
         el: '#databinding',
-        data: {
-          show: true
-        },
-        methods: {
-          
-        }
-      })
+        data: {},
+        methods: {}
+      });
     </script>
   </body>
 </html>
