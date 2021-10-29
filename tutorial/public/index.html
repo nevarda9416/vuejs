@@ -5,39 +5,114 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title>VueJS Template</title>
+    <title>VueJS Instance</title>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-        <script type="text/javascript" src="https://unpkg.com/vue-router@3.0.1/dist/vue-router.js"></script>
-
   </head>
   <body>
-    <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id = "app1">
-         <h1>Routing Example</h1>
-         <p>
-            <router-link to = "/route1">Router Link 1</router-link>
-            <router-link to = "/route2">Router Link 2</router-link>
-         </p>
-         <!-- route outlet -->
-         <!-- component matched by the route will render here -->
-         <router-view></router-view>
-      </div>
-      <script type = "text/javascript">
-         const Route1 = { template: '<div style = "border-radius:20px;background-color:cyan;width:200px;height:50px;margin:10px;font-size:25px;padding:10px;">This is router 1</div>' }
-         const Route2 = { template: '<div style = "border-radius:20px;background-color:green;width:200px;height:50px;margin:10px;font-size:25px;padding:10px;">This is router 2</div>' }
-         const routes = [
-            { path: '/route1', component: Route1 },
-            { path: '/route2', component: Route2 }
-         ];
-         const router = new VueRouter({
-            routes // short for `routes: routes`
-         });
-         var vm = new Vue({
-            el: '#app1',
-            router
-         });
-      </script>
+    <style>
+      #databinding{
+        padding: 20px 15px 15px 15px;
+        margin: 0 0 25px 0;
+        width: auto;
+      }
+      span, option, input {
+        font-size:20px;
+      }
+      .Table{
+        display: table;
+        width:80%;
+      }
+      .Title{
+        display: table-caption;
+        text-align: center;
+        font-weight: bold;
+        font-size: larger;
+      }
+      .Heading{
+        display: table-row;
+        font-weight: bold;
+        text-align: center;
+      }
+      .Row{
+        display: table-row;
+      }
+      .Cell{
+        display: table-cell;
+        border: solid;
+        border-width: thin;
+        padding-left: 5px;
+        padding-right: 5px;
+        width:30%;
+      }
+    </style>
+    <div id = "databinding">
+      <h1>Customer Details</h1>
+      <span>First Name</span>
+      <input type="text" placeholder="Enter first name" v-model="fname"/>
+      <span>Last Name</span>
+      <input type="text" placeholder="Enter last name" v-model="lname"/>
+      <span>Address</span>
+      <input type="text" placeholder="Enter address" v-model="addr"/>
+      <button v-on:click="showdata" v-bind:style="styleobj">Add</button>
+      <br/>
+      <br/>
+      <customercomponent
+        v-for="(item, index) in custdet"
+        v-bind:item="item"
+        v-bind:index="index"
+        v-bind:itr="item"
+        v-on:removeelement="custdet.splice(index, 1)">
+      </customercomponent>
+    </div>
+    <script type = "text/javascript">
+        Vue.component('customercomponent', {
+            template : '<div class = "Table"><div class = "Row"  v-bind:style = "styleobj"><div class = "Cell"><p>{{itr.fname}}</p></div><div class = "Cell"><p>{{itr.lname}}</p></div><div class = "Cell"><p>{{itr.addr}}</p></div><div class = "Cell"><p><button v-on:click = "$emit(\'removeelement\')">X</button></p></div></div></div>',
+            props: ['itr', 'index'],
+            data: function() {
+              return {
+                styleobj: {
+                  backgroundColor: this.getcolor(),
+                  fontSize: 20
+                }
+              }
+            },
+            methods: {
+              getcolor: function() {
+                if (this.index % 2) {
+                  return '#FFE633';
+                } else {
+                  return '#D4CA87';
+                }
+              }
+            }         
+        });
+        var vm = new Vue({
+          el: '#databinding',
+          data: {
+            fname: '',
+            lname: '',
+            addr: '',
+            custdet: [],
+            styleobj: {
+              backgroundColor: '#2196F3!important',
+              cursor: 'pointer',
+              padding: '8px 16px',
+              verticalAlign: 'middle'
+            }
+          },
+          methods: {
+            showdata: function() {
+              this.custdet.push({
+                fname: this.fname,
+                lname: this.lname,
+                addr: this.addr
+              });
+              this.fname = "";
+              this.lname = "";
+              this.addr = "";
+            }
+          }
+        });
+    </script>
   </body>
 </html>
