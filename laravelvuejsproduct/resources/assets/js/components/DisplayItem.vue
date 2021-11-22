@@ -56,7 +56,7 @@
                 let uri = `http://127.0.0.1:8000/items/${id}`;
                 this.items.splice(id, 1);
                 this.axios.delete(uri);
-                this.$router.push({name: 'DisplayItem'});
+                this.fetchItems();
             }
         }
     }
