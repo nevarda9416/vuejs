@@ -1,9 +1,10 @@
 <script>
 import { Line } from 'vue-chartjs';
+
 export default {
     extends: Line,
     mounted() {
-        let uri = 'http://localhost:8000/coins';
+        let uri = 'http://127.0.0.1:8000/coins';
         let years = new Array();
         let labels = new Array();
         let prices = new Array();

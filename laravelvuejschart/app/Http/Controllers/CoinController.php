@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Coin;
+use Illuminate\Support\Facades\DB;
 
 class CoinController extends Controller
 {
@@ -12,7 +13,7 @@ class CoinController extends Controller
      */
     public function index()
     {
-        $coins = DB::table('coins')->where('name', '=', 'Bitcoin')->orderBy('year', 'ASC')->get();
+        $coins = DB::table('coins')->orderBy('year', 'ASC')->get();
         return response()->json($coins);
     }
 
