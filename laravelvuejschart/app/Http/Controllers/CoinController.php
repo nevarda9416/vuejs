@@ -7,6 +7,19 @@ use App\Models\Coin;
 
 class CoinController extends Controller
 {
+    /**
+     * @return mixed
+     */
+    public function index()
+    {
+        $coins = DB::table('coins')->where('name', '=', 'Bitcoin')->orderBy('year', 'ASC')->get();
+        return response()->json($coins);
+    }
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
     public function store(Request $request)
     {
         $coin = new Coin();
