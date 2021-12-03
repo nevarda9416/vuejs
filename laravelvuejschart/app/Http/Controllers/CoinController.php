@@ -13,8 +13,14 @@ class CoinController extends Controller
      */
     public function index()
     {
-        $coins = DB::table('coins')->orderBy('year', 'ASC')->get();
-        return response()->json($coins);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, "https://tygia.com/json.php?ran=0&rate=0&gold=1&bank=VIETCOM&date=now");
+        // SSL important
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $output = curl_exec($ch);
+        curl_close($ch);
+        return $output;
     }
 
     /**

@@ -2127,30 +2127,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_chartjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-chartjs */ "./node_modules/vue-chartjs/es/index.js");
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  "extends": vue_chartjs__WEBPACK_IMPORTED_MODULE_0__.Line,
+  "extends": vue_chartjs__WEBPACK_IMPORTED_MODULE_0__.Bar,
   mounted: function mounted() {
     var _this = this;
 
     var uri = 'http://127.0.0.1:8000/coins';
-    var years = new Array();
-    var labels = new Array();
-    var prices = new Array();
+    var brands = new Array();
+    var sells = new Array();
     this.axios.get(uri).then(function (response) {
-      var data = response.data;
+      var data = response.data.golds[0].value;
 
       if (data) {
         data.forEach(function (element) {
-          years.push(element.year);
-          labels.push(element.name);
-          prices.push(element.price);
+          brands.push(element.brand + ' (' + element.company + ')');
+          sells.push(Number(element.sell.replace(/[^0-9.-]+/g, "")));
         });
+        console.log(data);
 
         _this.renderChart({
-          labels: years,
+          labels: brands,
           datasets: [{
-            label: 'Bitcoin',
-            backgroundColor: '#FC2525',
-            data: prices
+            label: 'SJC',
+            backgroundColor: 'yellow',
+            data: sells
           }]
         }, {
           responsive: true,
