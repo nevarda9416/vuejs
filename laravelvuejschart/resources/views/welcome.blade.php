@@ -5,10 +5,13 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Add Coin Details</title>
-        <link href="{{asset('css/app.csss')}}" rel="stylesheet"/>
+        <link href="{{asset('css/app.css')}}" rel="stylesheet"/>
     </head>
     <body>
-        <div class="container" id="app"></div>
+        <div class="container" id="app">
+            <add-component></add-component>
+            <chart-component></chart-component>
+        </div>
         <script>
             window.Laravel = <?php echo json_encode([
                 'csrfToken' => csrf_token()
