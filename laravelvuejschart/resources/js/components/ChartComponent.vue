@@ -1,27 +1,25 @@
 <script>
-import { Line } from 'vue-chartjs';
-
+import { Bar } from 'vue-chartjs';
 export default {
-    extends: Line,
+    extends: Bar,
     mounted() {
         let uri = 'http://127.0.0.1:8000/coins';
-        let years = new Array();
-        let labels = new Array();
-        let prices = new Array();
+        let brands = new Array();
+        let sells = new Array();
         this.axios.get(uri).then((response)=>{
-            let data = response.data;
+            let data = response.data.golds[0].value;
             if (data) {
                 data.forEach(element => {
-                    years.push(element.year);
-                    labels.push(element.name);
-                    prices.push(element.price);
+                    brands.push(element.brand + ' (' + element.company + ')');
+                    sells.push(Number(element.sell.replace(/[^0-9.-]+/g, "")));
                 });
+                console.log(data);
                 this.renderChart({
-                    labels: years,
+                    labels: brands,
                     datasets: [{
-                        label: 'Bitcoin',
-                        backgroundColor: '#FC2525',
-                        data: prices
+                        label: 'SJC',
+                        backgroundColor: 'yellow',
+                        data: sells
                     }]
                 }, {responsive: true, maintainAspectRatio: false});
             } else {
