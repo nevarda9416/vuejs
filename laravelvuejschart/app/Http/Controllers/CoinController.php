@@ -13,6 +13,9 @@ class CoinController extends Controller
      */
     public function index()
     {
+        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Methods: GET');
+        header("Access-Control-Allow-Headers: X-Requested-With");
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "https://tygia.com/json.php?ran=0&rate=0&gold=1&bank=VIETCOM&date=now");
         // SSL important
