@@ -2114,14 +2114,14 @@ __webpack_require__.r(__webpack_exports__);
       if (data) {
         data.forEach(function (element) {
           brands.push(element.brand + ' (' + element.company + ')');
-          sells.push(Number(element.sell.replace(/[^0-9.-]+/g, "")));
-          if (element.brand1 == 'HN' && element.company == 'SJC') _this.$toasted.info('Giá vàng SJC Hà Nội bán ra ngày ' + response.data.golds[0].updated + ' có giá ' + (Number(element.sell.replace(/[^0-9-]+/g, "")) >= 6000000 ? '<span style="color:red;margin-left:4px;margin-right:4px">' + Number(element.sell.replace(/[^0-9-]+/g, "")).toLocaleString().replace(/,/g, '.') + '</span>' : '<span style="color:green;margin-left:4px;margin-right:4px">' + Number(element.sell.replace(/[^0-9-]+/g, "")).toLocaleString().replace(/,/g, '.') + '</span>') + 'VNĐ/chỉ');
+          sells.push(Number(element.sell.replace(/[^0-9]+/g, "")));
+          if (element.brand1 == 'HN' && element.company == 'SJC') _this.$toasted.info('Giá vàng SJC Hà Nội bán ra ngày ' + response.data.golds[0].updated + ' có giá ' + (Number(element.sell.replace(/[^0-9]+/g, "")) >= 6000000 ? '<span style="color:red;margin-left:4px;margin-right:4px">' + Number(element.sell.replace(/[^0-9]+/g, "")).toLocaleString().replace(/,/g, '.') + '</span>' : '<span style="color:green;margin-left:4px;margin-right:4px">' + Number(element.sell.replace(/[^0-9]+/g, "")).toLocaleString().replace(/,/g, '.') + '</span>') + 'VNĐ/chỉ');
         });
 
         _this.renderChart({
           labels: brands,
           datasets: [{
-            label: 'Giá vàng trong nước bán ra ngày ' + response.data.golds[0].updated,
+            label: 'Giá vàng trong nước bán ra ngày ' + response.data.golds[0].updated + ' (VNĐ/chỉ)',
             backgroundColor: 'yellow',
             data: sells
           }]
