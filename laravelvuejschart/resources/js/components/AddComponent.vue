@@ -9,19 +9,19 @@
     </div>
 </template>
 <script>
-export default {
-    data() {
-        return {
-            coin: {}
-        }
-    },
-    methods: {
-        addCoin() {
-            let uri = 'http://127.0.0.1:8000/coins';
-            this.axios.post(uri, this.coin).then((response) => {
-                window.location.reload();
-            });
+    export default {
+        data() {
+            return {
+                coin: {}
+            }
+        },
+        methods: {
+            addCoin() {
+                let uri = 'http://127.0.0.1:8000/coins';
+                this.axios.post(uri, this.coin).then((response) => {
+                    window.location.reload();
+                });
+            }
         }
     }
-}
 </script>
