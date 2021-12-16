@@ -10,6 +10,7 @@
     <body>
         <div class="container" id="app">
             <add-component></add-component>
+            <chart-gold-component></chart-gold-component>
             <chart-component></chart-component>
         </div>
         <script>

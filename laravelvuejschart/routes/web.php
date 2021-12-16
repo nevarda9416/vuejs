@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 // At Laravel 8, there is no namespace prefix being applied to your route groups that your routes are loaded into
 use App\Http\Controllers\CoinController;
+use App\Http\Controllers\GoldController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,4 +19,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/coins', [CoinController::class, 'index']);
-Route::post('/coins', 'CoinController@store');
+Route::post('/coin', 'CoinController@store');
+Route::get('/golds', [GoldController::class, 'index']);
+Route::post('/gold', 'GoldController@store');

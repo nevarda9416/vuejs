@@ -2072,16 +2072,61 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      coin: {}
+      gold: {}
     };
   },
   methods: {
-    addCoin: function addCoin() {
-      var uri = 'http://127.0.0.1:8000/coins';
-      this.axios.post(uri, this.coin).then(function (response) {
+    addGold: function addGold() {
+      var uri = 'http://127.0.0.1:8000/gold';
+      this.axios.post(uri, this.gold).then(function (response) {
         window.location.reload();
       });
     }
@@ -2138,6 +2183,53 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ChartGoldComponent.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ChartGoldComponent.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_chartjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-chartjs */ "./node_modules/vue-chartjs/es/index.js");
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  "extends": vue_chartjs__WEBPACK_IMPORTED_MODULE_0__.Line,
+  mounted: function mounted() {
+    var _this = this;
+
+    var uri = 'http://127.0.0.1:8000/golds';
+    var brands = new Array();
+    var sells = new Array();
+    this.axios.get(uri).then(function (response) {
+      var data = response.data;
+
+      if (data) {
+        data.forEach(function (element) {
+          brands.push(element.brand + ' (' + element.company + ')');
+          sells.push(Number(element.price));
+        });
+
+        _this.renderChart({
+          labels: brands,
+          datasets: [{
+            label: 'Giá vàng trong nước bán ra (VNĐ/lượng)',
+            backgroundColor: 'yellow',
+            data: sells
+          }]
+        }, {
+          responsive: true,
+          maintainAspectRatio: false
+        });
+      } else {
+        console.log('No data');
+      }
+    });
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -2154,6 +2246,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_toasted__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_toasted__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _components_AddComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/AddComponent */ "./resources/js/components/AddComponent.vue");
 /* harmony import */ var _components_ChartComponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/ChartComponent */ "./resources/js/components/ChartComponent.vue");
+/* harmony import */ var _components_ChartGoldComponent__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/ChartGoldComponent */ "./resources/js/components/ChartGoldComponent.vue");
 
 
  // Init and customize toaster
@@ -2172,6 +2265,7 @@ vue__WEBPACK_IMPORTED_MODULE_3__["default"].use((vue_toasted__WEBPACK_IMPORTED_M
 
 
 
+
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "../node_modules/vue/dist/vue.esm.js");
@@ -2180,6 +2274,7 @@ vue__WEBPACK_IMPORTED_MODULE_3__["default"].use(vue_axios__WEBPACK_IMPORTED_MODU
 
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('add-component', _components_AddComponent__WEBPACK_IMPORTED_MODULE_4__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('chart-component', _components_ChartComponent__WEBPACK_IMPORTED_MODULE_5__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('chart-gold-component', _components_ChartGoldComponent__WEBPACK_IMPORTED_MODULE_6__["default"]);
 var app = new vue__WEBPACK_IMPORTED_MODULE_3__["default"]({
   el: '#app'
 });
@@ -33265,6 +33360,41 @@ component.options.__file = "resources/js/components/ChartComponent.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/ChartGoldComponent.vue":
+/*!********************************************************!*\
+  !*** ./resources/js/components/ChartGoldComponent.vue ***!
+  \********************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ChartGoldComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ChartGoldComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/ChartGoldComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+;
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  _ChartGoldComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"],
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/ChartGoldComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/AddComponent.vue?vue&type=script&lang=js&":
 /*!***************************************************************************!*\
   !*** ./resources/js/components/AddComponent.vue?vue&type=script&lang=js& ***!
@@ -33288,6 +33418,19 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ChartComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ChartComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ChartComponent.vue?vue&type=script&lang=js&");
  /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ChartComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/ChartGoldComponent.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/ChartGoldComponent.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ChartGoldComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ChartGoldComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ChartGoldComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ChartGoldComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -33324,20 +33467,253 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "col-md-8" }, [
+    _c("div", { staticClass: "card card-default" }, [
+      _c("div", { staticClass: "card-header" }, [_vm._v("Add Gold")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-body" }, [
+        _c(
+          "form",
+          {
+            on: {
+              submit: function ($event) {
+                $event.preventDefault()
+                return _vm.addGold.apply(null, arguments)
+              },
+            },
+          },
+          [
+            _c("div", { staticClass: "form-group row" }, [
+              _c(
+                "label",
+                {
+                  staticClass: "col-sm-4 col-form-label text-md-right",
+                  attrs: { for: "brand" },
+                },
+                [_vm._v("Brand")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.gold.brand,
+                      expression: "gold.brand",
+                    },
+                  ],
+                  staticClass: "form-control",
+                  attrs: { id: "brand", type: "text", required: "" },
+                  domProps: { value: _vm.gold.brand },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.gold, "brand", $event.target.value)
+                    },
+                  },
+                }),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group row" }, [
+              _c(
+                "label",
+                {
+                  staticClass: "col-sm-4 col-form-label text-md-right",
+                  attrs: { for: "company" },
+                },
+                [_vm._v("Company")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.gold.company,
+                      expression: "gold.company",
+                    },
+                  ],
+                  staticClass: "form-control",
+                  attrs: { id: "company", type: "text", required: "" },
+                  domProps: { value: _vm.gold.company },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.gold, "company", $event.target.value)
+                    },
+                  },
+                }),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group row" }, [
+              _c(
+                "label",
+                {
+                  staticClass: "col-sm-4 col-form-label text-md-right",
+                  attrs: { for: "date" },
+                },
+                [_vm._v("Date")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.gold.date,
+                      expression: "gold.date",
+                    },
+                  ],
+                  staticClass: "form-control",
+                  attrs: { id: "date", type: "text", required: "" },
+                  domProps: { value: _vm.gold.date },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.gold, "date", $event.target.value)
+                    },
+                  },
+                }),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group row" }, [
+              _c(
+                "label",
+                {
+                  staticClass: "col-sm-4 col-form-label text-md-right",
+                  attrs: { for: "month" },
+                },
+                [_vm._v("Month")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.gold.month,
+                      expression: "gold.month",
+                    },
+                  ],
+                  staticClass: "form-control",
+                  attrs: { id: "month", type: "text", required: "" },
+                  domProps: { value: _vm.gold.month },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.gold, "month", $event.target.value)
+                    },
+                  },
+                }),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group row" }, [
+              _c(
+                "label",
+                {
+                  staticClass: "col-sm-4 col-form-label text-md-right",
+                  attrs: { for: "year" },
+                },
+                [_vm._v("Year")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.gold.year,
+                      expression: "gold.year",
+                    },
+                  ],
+                  staticClass: "form-control",
+                  attrs: { id: "year", type: "text", required: "" },
+                  domProps: { value: _vm.gold.year },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.gold, "year", $event.target.value)
+                    },
+                  },
+                }),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group row" }, [
+              _c(
+                "label",
+                {
+                  staticClass: "col-sm-4 col-form-label text-md-right",
+                  attrs: { for: "price" },
+                },
+                [_vm._v("Price")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.gold.price,
+                      expression: "gold.price",
+                    },
+                  ],
+                  staticClass: "form-control",
+                  attrs: { id: "price", type: "number", required: "" },
+                  domProps: { value: _vm.gold.price },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.gold, "price", $event.target.value)
+                    },
+                  },
+                }),
+              ]),
+            ]),
+            _vm._v(" "),
+            _vm._m(0),
+          ]
+        ),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-footer" }, [
+        _vm._v("Tỷ giá vàng lấy từ API"),
+      ]),
+    ]),
+  ])
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-8" }, [
-      _c("div", { staticClass: "card card-default" }, [
-        _c("div", { staticClass: "card-header" }, [
-          _vm._v("Tỷ giá vàng lấy từ API"),
+    return _c("div", { staticClass: "form-group row mb-0" }, [
+      _c("div", { staticClass: "col-md-8 offset-md-4" }, [
+        _c("button", { staticClass: "btn btn-primary" }, [
+          _vm._v("\n                            Add\n                        "),
         ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-body" }),
       ]),
     ])
   },
