@@ -15,6 +15,9 @@ class GoldController extends Controller
      */
     public function index()
     {
+        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Methods: GET');
+        header("Access-Control-Allow-Headers: X-Requested-With");
         $golds = DB::table('golds')->orderBy('id', 'ASC')->get();
         return response()->json($golds);
     }
