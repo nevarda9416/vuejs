@@ -59,7 +59,7 @@ export default defineComponent({
   created() {
     const values: any = {};
     this.fields.forEach(({ name, props }) => {
-      if (prop?.value != undefined) {
+      if (props?.value != undefined) {
         values[name] = props.value;
       }
     });

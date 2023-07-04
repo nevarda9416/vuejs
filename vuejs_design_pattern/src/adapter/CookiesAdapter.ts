@@ -1,3 +1,4 @@
+// @ts-ignore
 import Cookies from 'js-cookie';
 
 export interface CookieOptions {

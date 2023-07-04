@@ -1,5 +1,6 @@
 import VInput from "@components/form/VInput.vue";
 import type FormBuilder from "@/builder/FormBuilder";
+// @ts-ignore
 import z from "zod";
 
 export default class FormDirector {
@@ -10,16 +11,17 @@ export default class FormDirector {
   }
 
   makeLoginForm() {
-    return this.builder.addField({
-      component: VInput,
-      name: "username",
-      type: "text",
-      label: "username",
-      props: {
-        value: "",
-      },
-      validation: z.string().min(10).max(40),
-    })
+    return this.builder
+      .addField({
+        component: VInput,
+        name: "username",
+        type: "text",
+        label: "username",
+        props: {
+          value: "",
+        },
+        validation: z.string().min(10).max(40),
+      })
       .addField({
         component: VInput,
         name: "password",
