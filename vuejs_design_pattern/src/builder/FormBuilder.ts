@@ -15,9 +15,12 @@ export interface Field {
 export default class FormBuilder {
   fields: Field[] = [];
   provider: any;
+  constructor() {
+    this.fields = [];
+  }
   addField(field: Field) {
     this.fields.push(field);
-    return this.fields;
+    return this;
   }
   build() {
     const Fields = this.fields;
